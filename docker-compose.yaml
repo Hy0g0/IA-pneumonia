@@ -1,0 +1,24 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./back
+    ports:
+      - 5000:5000
+    volumes:
+      - ./back:/app
+      - ./common:/image
+  frontend:
+    build:
+      context: ./front
+    ports:
+      - 3000:3000
+    volumes:
+      - ./front:/app
+      - ./common:/image
+  engine:
+    image: ollama/ollama
+    volumes:
+      - ./engine:/root/.ollama/models
+      - ./common:/image
+      - ./dataset:/images
