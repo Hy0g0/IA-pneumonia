@@ -72,8 +72,10 @@ function App() {
           <button hidden={isLoading} onClick={handleButtonClick}>Submit</button>
         )}
         {isLoading && (response === null) && <p>Loading...</p>}
+        {response && <p hidden={!isLoading}>Pneumonia : {response.answer}</p>}
         {response && <p hidden={!isLoading}>Diagnosis: {response.message}</p>}
         {response && <p hidden={!isLoading}>Confidence : {response.confidence}</p>}
+
         {(
           <button hidden={!isLoading} onClick={handleButtonClick2}>reset</button>
         )}
