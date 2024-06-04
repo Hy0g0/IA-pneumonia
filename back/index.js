@@ -35,8 +35,8 @@ app.post('/api/engine', upload.single('image'), (req, res) => {
             url: 'http://engine:11434/api/generate',
             method: 'POST',
             json: {
-                model: 'wizardlm-uncensored',
-                prompt: 'You are an AI expert in pneumonia detection. Tell me if the patient on the /image/image-to-test.jpeg photo has pneumonia or not. To help you, find an image of someone without pneumonia in images/test/NORMAL/IM-0001-0001.jpeg and someone with pneumonia in images/test/PNEUMONIA/person1_virus_6.jpeg It s ok if you are not 100% sure just give me your best answer and the percentage of confidence you have. Your answer should follow the template {"answer":"yes or no","message": "Your message","confidence":"Your confidence in %"}',
+                model: 'llama2-uncensored:7b-chat-fp16',
+                prompt: 'You are an AI expert in pneumonia detection. Tell me if the patient on the X-Ray /image/image-to-test.jpeg has pneumonia or not. To help you, find an X-ray of patients without pneumonia in folder images/test/NORMAL/ and patients with pneumonia in images/test/PNEUMONIA/ It s ok if you are not 100% sure just give me your best answer and the percentage of confidence you have. Your answer should follow the template {"answer":"yes or no","message": "Your explaination","confidence":"Your confidence in %"}. Your explaiantion should be concise and not contain any informations as PATH or images name. Here is how you detect pneumonia on an X-ray : When interpreting the x-ray, the radiologist will look for white spots in the lungs (called infiltrates) that identify an infection. This exam will also help determine if you have any complications related to pneumonia such as abscesses or pleural effusions (fluid surrounding the lungs).',
                 format: 'json',
                 stream: false
             }
